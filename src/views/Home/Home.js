@@ -2,11 +2,12 @@ import React from "react";
 import { getProjects } from "../../proyects.service";
 import { useParams } from "react-router-dom";
 import {removeProject} from "../../proyects.service"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Home.css"
 
 export function Home() {
   const [projects, setProjects] = React.useState([]);
+  let history = useHistory();
 
   const params = useParams()
 
@@ -18,13 +19,23 @@ export function Home() {
 
   //no funciona
   const removeById = async (projectId) => {
+
+    console.log('removeById', params);
     const { data } = await removeProject(params.projectId);
-    setProjects(projects => projects.filter(project => project._id === projectId))
+    projectsApi();
+    history.push('/')
+
   }
+
 
   React.useEffect(() => {
     projectsApi();
   }, []);
+
+  React.useEffect(() => {
+    removeById();
+
+  }, [params]);
 
 
   return (
@@ -54,7 +65,7 @@ export function Home() {
                     </Link>
                   </td>
                   <td>
-                    <Link to={`/${project._id}`}><button onClick={removeById}>Delete</button></Link>
+                    <Link to={`/${project._id}`}>Delete</Link>
                   </td>
                 </tr>
               </tbody>
