@@ -15,6 +15,8 @@ export function Home() {
     setProjects(data.data);
   };
 
+
+  //no funciona
   const removeById = async (projectId) => {
     const { data } = await removeProject(params.projectId);
     setProjects(projects => projects.filter(project => project._id === projectId))
