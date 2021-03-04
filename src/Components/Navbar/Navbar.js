@@ -8,6 +8,8 @@ export function Navbar() {
   <ul> 
 	<li><Link to="/">go home</Link></li> 
 	<li><Link to="/projectform">create project</Link></li> 
+  <li><Link to="/recipe">recipe api test</Link></li> 
+
   </ul> 
     </div>
   );

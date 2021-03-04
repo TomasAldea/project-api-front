@@ -5,8 +5,11 @@ import {removeProject} from "../../proyects.service"
 import { Link, useHistory } from "react-router-dom";
 import "./Home.css"
 
+import {getRecipe} from "../../api.service"
+
 export function Home() {
   const [projects, setProjects] = React.useState([]);
+  const [recipe, setRecipe] = React.useState([]);
   let history = useHistory();
 
   const params = useParams()
@@ -16,6 +19,15 @@ export function Home() {
     setProjects(data.data);
   };
 
+
+
+  const getRecipeApi = async () => {
+    const { data } = await getRecipe();
+    console.log(data.data);
+    setRecipe(data.data);
+  };
+
+  
 
   //no funciona
   const removeById = async (projectId) => {
@@ -27,6 +39,10 @@ export function Home() {
 
   }
 
+
+  React.useEffect(() => {
+    getRecipeApi();
+  }, []);
 
   React.useEffect(() => {
     projectsApi();

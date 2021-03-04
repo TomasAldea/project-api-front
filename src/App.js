@@ -4,6 +4,7 @@ import { Home } from "./views/Home/Home";
 import { CreateProjectForm } from "./views/CreateProjectForm/CreateProjectForm";
 import {Navbar} from "../src/Components/Navbar/Navbar"
 import {ProjectDetails} from "./views/ProjectDetails/ProjectDetails"
+import {Recipe} from "./views/Recipe/Recipe"
 
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/recipe">
+          <Recipe />
         </Route>
         <Route exact path="/projectform">
           <CreateProjectForm />
